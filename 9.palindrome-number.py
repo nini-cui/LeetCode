@@ -14,10 +14,9 @@ class Solution:
         else:
             int_list = [int(x) for x in str(x)]
             for i in range(int(len(int_list)/2)):
-                if (int_list[i] == int_list[len(int_list) - i - 1]):
-                    return True
-                else:
+                if (int_list[i] != int_list[len(int_list) - i - 1]):
                     return False
+            return True
 
 
 # @lc code=end
