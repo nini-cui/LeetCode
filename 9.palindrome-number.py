@@ -1,3 +1,4 @@
+import math
 #
 # @lc app=leetcode id=9 lang=python3
 #
@@ -5,20 +6,19 @@
 #
 
 # @lc code=start
-class Solution:
+class Palindrome:
     def isPalindrome(self, x: int) -> bool:
-        if x < 0:
-            return False
-        elif len(str(x)) == 1:
-            return True
-        else:
-            int_list = [int(x) for x in str(x)]
-            for i in range(int(len(int_list)/2)):
-                if (int_list[i] != int_list[len(int_list) - i - 1]):
-                    return False
-            return True
+        str_x = str(x)
+        iter_num = math.floor(len(str_x) / 2)
+
+        for i in range(iter_num):
+            if str_x[i] != str_x[-(i+1)]:
+                return False
+        
+        return True
 
 
 # @lc code=end
 if __name__ == '__main__':
-    Solution().isPalindrome(1000021)
+    Palindrome().isPalindrome(121)
+    # Palindrome().isPalindrome(1000021)

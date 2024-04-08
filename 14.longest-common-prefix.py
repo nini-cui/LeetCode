@@ -57,9 +57,7 @@ class Common_Prefix:
 
             return common_prefix
 
-
-
 if __name__ == "__main__":
     common_prefix = Common_Prefix()
-    # print(common_prefix.longestCommonPrefix(["ac","ac","a", "a"]))
-    print(common_prefix.longestCommonPrefix(["a","a","b"]))
+    print(common_prefix.longestCommonPrefix(["ac","ac","a", "a"]))
+    # print(common_prefix.longestCommonPrefix(["a","a","b"]))
