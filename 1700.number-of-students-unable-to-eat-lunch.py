@@ -25,9 +25,6 @@ class eatSandwiches:
             
             if len(students) == 0:
                 return 0
-            
-            
-   
 # @lc code=end
 
 if __name__ == "__main__":
