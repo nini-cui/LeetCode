@@ -17,8 +17,7 @@ class mergeLists:
         if not nums:
             return None
         
-        head = ListNode(nums[0])
-        current = head
+        head = current = ListNode(nums[0])
 
         for i in nums[1:]:
             current.next = ListNode(i)
@@ -28,6 +27,7 @@ class mergeLists:
 
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         dummy = cur = ListNode(0)
+
         while list1 and list2:
             if list1.val < list2.val:
                 cur.next = list1
@@ -40,9 +40,8 @@ class mergeLists:
 
         cur.next = list1 or list2
         res = dummy.next
-
         return res
-            
+
 # @lc code=end
 if __name__ == "__main__":
     mergeLists = mergeLists()

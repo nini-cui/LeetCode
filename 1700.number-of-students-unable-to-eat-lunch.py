@@ -4,9 +4,11 @@
 # [1700] Number of Students Unable to Eat Lunch
 #
 from typing import List
+from collections import Counter
 
 # @lc code=start
 class eatSandwiches:
+
     def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
         if not students or not sandwiches:
             return 0
@@ -30,4 +32,4 @@ class eatSandwiches:
 if __name__ == "__main__":
     eatSandwiches = eatSandwiches()
     # eatSandwiches.countStudents([1,1,0,0], [0,1,0,1])
-    eatSandwiches.countStudents([1,1,1,0,0,1], [1,0,0,0,1,1])
+    eatSandwiches.countStudentsLen([0,1,1,0,1,1], [0,0,0,1,1,0])
