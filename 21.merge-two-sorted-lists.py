@@ -10,9 +10,7 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
-
 class mergeLists:
-
     def list_to_linked_list(self, nums):
         if not nums:
             return None
@@ -22,25 +20,32 @@ class mergeLists:
         for i in nums[1:]:
             current.next = ListNode(i)
             current = current.next
-
         return head
+    # results = [1, 2, 3, 4, 4]
+    def mergeTwoLists(self, a, b):
+        if a and b:
+            if a.val > b.val:
+                 a, b = b, a
+            a.next = self.mergeTwoLists(a.next, b)
+        result = a or b
+        return result
+    
+    # def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+    #     dummy = cur = ListNode(0)
 
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = cur = ListNode(0)
+    #     while list1 and list2:
+    #         if list1.val < list2.val:
+    #             cur.next = list1
+    #             list1 = list1.next
+    #         else:
+    #             cur.next = list2
+    #             list2 = list2.next
 
-        while list1 and list2:
-            if list1.val < list2.val:
-                cur.next = list1
-                list1 = list1.next
-            else:
-                cur.next = list2
-                list2 = list2.next
+    #         cur = cur.next
 
-            cur = cur.next
-
-        cur.next = list1 or list2
-        res = dummy.next
-        return res
+    #     cur.next = list1 or list2
+    #     res = dummy.next
+    #     return res
 
 # @lc code=end
 if __name__ == "__main__":
