@@ -1,10 +1,9 @@
 #
-# @lc app=leetcode id=94 lang=python3
+# @lc app=leetcode id=145 lang=python3
 #
-# [94] Binary Tree Inorder Traversal
+# [145] Binary Tree Postorder Traversal
 #
-from typing import List
-from collections import deque
+
 # @lc code=start
 # Definition for a binary tree node.
 class TreeNode:
@@ -13,7 +12,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
-class inorderTraversal:
+class postorderTraversal:
     def __init__(self):
         self.root = None
 
@@ -50,46 +49,34 @@ class inorderTraversal:
         for _ in nodes_lst:
             self.add(_)
 
-    def inorderTraversal(self) -> List[int]:
+    def postorderTraversal(self, root):
+        if root == None:
+            return None
+        
+        stack1 = []
+        stack1.append(self.root)
+        stack2 = []
         res = []
 
-        stack = deque()
-
-        stack.append(self.root)
-
-        trav = self.root
+        while len(stack1) != 0:
+            node = stack1.pop()
+            if node is not None:
+                stack2.append(node)
+            if node.left is not None:
+                stack1.append(node.left)
+            if node.right is not None:
+                stack1.append(node.right)
+                
         while True:
-            if self.root == None or len(stack) == 0:
+            if root == None or len(stack2) == 0:
                 break
 
-            while trav != None and trav.left != None:
-                stack.append(trav.left)
-                trav = trav.left
-
-            node = stack.pop()
-            
-            if node.right != None:
-                stack.append(node.right)
-                trav = node.right
-
+            node = stack2.pop()
             res.append(node.val)
 
-        # res, stack = [], []
-
-        # while True:
-        #     while self.root:
-        #         stack.append(self.root)
-        #         self.root = self.root.left
-
-        #     if not stack:
-        #         return res
-            
-        #     node = stack.pop()
-        #     res.append(node.val)
-        #     self.root = node.right
-
+        return res
 # @lc code=end
 if __name__ == "__main__":
-    inorderTraversal = inorderTraversal()
-    inorderTraversal.add_nodes([4, 2, 6, 3, 1, 7, 5])
-    inorderTraversal.inorderTraversal()
+    postorderTraversal = postorderTraversal()
+    postorderTraversal.add_nodes([1, 2, 3, 4, 5, 6])
+    postorderTraversal.postorderTraversal()
