@@ -7,53 +7,28 @@ from typing import List
 # @lc code=start
 class pascalTriangle:
     def generate(self, numRows: int) -> List[List[int]]:
-        result = []
-        if numRows == 0:
-            return result
+        res = []
 
-        first_row = [1]
-        result.append(first_row)
-
-        for i in range(1, numRows):
-            prev_row = result[i - 1]
-            current_row = [1]
-
-            for j in range(1, i):
-                current_row.append(prev_row[j - 1] + prev_row[j])
-
-            current_row.append(1)
-            result.append(current_row)
-
-        return result
-
-        # if numRows == 0:
-        #     return []
-        # elif numRows == 1:
-        #     return [[1]]
+        if numRows == 1:
+            return [[1]]
         
-        # prevVal = self.generate(numRows-1)
-        # currentVal = [1] * numRows
+        if numRows == 2:
+            return [[1], [1,1]]
 
-        # for i in range(1, numRows-1):
-        #     currentVal[i] = prevVal[-1][i] + prevVal[-1][i-1]
+        if numRows >= 3:
+            res = [[1], [1, 1]]
 
-        # prevVal.append(currentVal)
+            for i in range(2, numRows):
+                ans = []
+                ans.append(1)
+                prev_lst = res[i-1]
+                for k in range(1, i):
+                    ans.append(prev_lst[k-1] + prev_lst[k]) 
+                ans.append(1)
 
-        # return prevVal
+                res.append(ans)
 
-
-        # res = []
-        # for i in range(1, numRows+1):
-        #     current_arr = i * [1]
-        #     if (len(current_arr) == 1) or (len(current_arr) == 2):
-        #         res.append(current_arr)
-        #     else:
-        #         prev_arr = res[i-2]
-        #         for k in range(1, i-1):
-        #             current_arr[k] = prev_arr[k] + prev_arr[k-1]
-        #         res.append(current_arr)
-
-        # return res                    
+        return res               
 # @lc code=end
 if __name__ == "__main__":
     pascalTriangle = pascalTriangle()

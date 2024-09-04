@@ -7,53 +7,77 @@
 # @lc code=start
 class RomanToInt:
     def romanToInt(self, s: str) -> int:
-        symbol_value = {'I':1, 'V':5, 'X':10, 'L':50,
-                        'C':100, 'D':500, 'M':1000
-                        }
-        symbol_value_list = {'IV': 4, 'IX': 9, 'XL': 40,
-                             'XC': 90, 'CD': 400, 'CM': 900}
+        # MMMXLV
+        symbol_val = {
+                    "I": 1,
+                    "V": 5,
+                    "X": 10,
+                    "L": 50,
+                    "C": 100,
+                    "D": 500,
+                    "M": 1000,
+                    "IV": 4,
+                    "IX": 9,
+                    "XL": 40,
+                    "XC": 90,
+                    "CD": 400,
+                    "CM": 900
+        }
 
-        i=sum=counter = 0
-        
+        sum = 0
+
+        i = 0
         while i < (len(s) - 1):
-            current_symbol = s[i]
-            next_symbol = s[i+1]
-            concatenated_symbol = current_symbol + next_symbol
-            if concatenated_symbol in symbol_value_list:
-                current_value = symbol_value_list[concatenated_symbol]
-                sum += current_value
+            if s[i] + s[i+1] in symbol_val:
+                sum += symbol_val[s[i]+s[i+1]]
                 i += 2
-                counter += 2
             else:
-                current_value = symbol_value[s[i]]
-                sum += current_value
+                sum += symbol_val[s[i]]
                 i += 1
-                counter += 1
-
-        if counter == (len(s) - 1):
-            sum += symbol_value[s[len(s)-1]]
+            
+        if i == len(s) - 1:
+            sum += symbol_val[s[i]]
 
         return sum
 
-        # for i in range(len(s)-1, 0, -2):
-        #     current_value = symbol_value[s[i]]
-        #     next_value = symbol_value[s[i-1]]
-        #     if current_value == next_value:
-        #         sum += 2*current_value
-        #     elif current_value > next_value:
-        #         sum += (current_value - next_value)
-        #     else:
-        #         sum += (current_value + next_value)
-                
-        # if len(s) % 2 != 0:
-        #     sum += symbol_value[s[0]]
+        # symbol_val = {
+        #             "I": 1,
+        #             "V": 5,
+        #             "X": 10,
+        #             "L": 50,
+        #             "C": 100,
+        #             "D": 500,
+        #             "M": 1000,
+        #             "IV": 4,
+        #             "IX": 9,
+        #             "XL": 40,
+        #             "XC": 90,
+        #             "CD": 400,
+        #             "CM": 900
+        # }
+
+        # res_sum = 0
+        # i = 0
         
-        return sum
+        # while i < (len(s) - 1):
+        #     concatenate_str = s[i] + s[i+1]
+        #     if concatenate_str in symbol_val:
+        #         res_sum += symbol_val[concatenate_str]
+        #         # move index 
+        #         i  += 2
+        #     else:
+        #         res_sum += symbol_val[s[i]]
+        #         i += 1  
+
+        # if i == len(s) - 1:
+        #     res_sum += symbol_val[s[i]]        
+                
+        # return res_sum 
 
 if __name__ == '__main__':
-    # print(RomanToInt().romanToInt("III"))
+    print(RomanToInt().romanToInt("MMMXLV"))
     # print(RomanToInt().romanToInt("LVIII"))
-    print(RomanToInt().romanToInt("MCMXCIV"))
+    # print(RomanToInt().romanToInt("MCMXCIV"))
 
 # @lc code=end
 
